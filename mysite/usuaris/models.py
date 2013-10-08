@@ -1,12 +1,34 @@
+# -*- coding: utf-8 -*-
+"""
+Definició de les classes i els seus mètodes
+"""
+import datetime
+from django.utils import timezone
 from django.db import models
 
-# Create your models here.
+#Càrrec que ocupa dins de l'empresa
+class Carrec(models.Model):
+
+	nom = models.CharField(max_length=25)
+	descr = models.CharField(max_length=100) #Breu descripció de les responsabilitats.
+	
+	def __unicode__(self):
+		return self.nom
+
 class Usuari(models.Model):
+
     nom = models.CharField(max_length=20)
     cognoms = models.CharField(max_length=40)
+    correu = models.CharField(max_length=50)
+    carrec = models.ForeignKey(Carrec)
     data_alta = models.DateField()
 
-class Fitxer(models.Model):
-	nom = models.CharField(max_length=30)	
-	usuari = models.ForeignKey(Usuari)
+    #Format en què es mostraran els usuaris quan fem un "Usuari.objects.all()".
+    def __unicode__(self):  
+        return self.nom+" "+self.cognoms
+
+    #Mètode que torna 'true' si l'usuari ha estat donat d'alta en el darrer dia.
+    def publicat_en_el_ultim_dia(self):
+        return self.data_alta >= timezone.now() - datetime.timedelta(days=1)
+
 
