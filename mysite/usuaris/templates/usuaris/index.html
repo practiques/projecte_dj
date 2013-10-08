@@ -1,0 +1,11 @@
+
+{% if tots_usuaris %}
+	<h1>Llistat d'usuaris</h1>
+    <ul>
+    {% for usuari in tots_usuaris %}
+        <li><a href="/usuaris/{{ usuari.id }}/">{{usuari.nom}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No s'han creat usuaris.</p>
+{% endif %}
