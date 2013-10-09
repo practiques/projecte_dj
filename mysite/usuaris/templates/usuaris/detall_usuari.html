@@ -1,0 +1,11 @@
+{% if detall_usuari %}
+	<h1>Detall de l'usuari {{detall_usuari.id}}</h1>
+    <ul>
+    	<li>Nom: {{detall_usuari.nom}}</li>
+    	<li>Cognom: {{detall_usuari.cognoms}}</li>
+    	<li>Correu: {{detall_usuari.correu}}</li>
+    	<li>Data d'alta: {{detall_usuari.data_alta}}</li>
+    </ul>
+{% else %}
+    <p>No s'ha trobat cap més informació per a aquest usuari.</p>
+{% endif %}

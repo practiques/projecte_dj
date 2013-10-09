@@ -22,13 +22,14 @@ class Usuari(models.Model):
     correu = models.CharField(max_length=50)
     carrec = models.ForeignKey(Carrec)
     data_alta = models.DateField()
+    
+
+    #Mètode que torna 'true' si l'usuari ha estat donat d'alta en el darrer dia.
+    def donat_alta_en_ultim_dia(self):
+        now=timezone.now();
+        return now - datetime.timedelta(days=1) <= self.data_alta < now
 
     #Format en què es mostraran els usuaris quan fem un "Usuari.objects.all()".
     def __unicode__(self):  
         return self.nom+" "+self.cognoms
-
-    #Mètode que torna 'true' si l'usuari ha estat donat d'alta en el darrer dia.
-    def publicat_en_el_ultim_dia(self):
-        return self.data_alta >= timezone.now() - datetime.timedelta(days=1)
-
 
