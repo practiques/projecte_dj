@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 from django.contrib import admin
 from usuaris.models import Usuari, Carrec
 
@@ -19,4 +20,3 @@ class UsuariAdmin(admin.ModelAdmin):
 
 admin.site.register(Usuari,UsuariAdmin)
 
-admin.site.register(Carrec)
